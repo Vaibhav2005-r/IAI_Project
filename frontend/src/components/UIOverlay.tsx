@@ -47,7 +47,9 @@ export default function UIOverlay({
               <Cpu className="text-blue-400" size={32} />
               DEEP_BLUE_X
             </h1>
-            <p className="text-sm text-blue-200 opacity-80">MCTS Neural Simulation Engine</p>
+            <p className="text-sm text-blue-200 opacity-80">
+              {difficulty <= 500 ? '🎲 MCTS Simulation Engine' : '⚡ Alpha-Beta Pruning (Stockfish)'}
+            </p>
           </div>
           
           <div className={`p-3 rounded-lg border ${aiThinking ? 'bg-blue-900/40 border-blue-400' : 'bg-transparent border-gray-700'}`}>
@@ -60,7 +62,7 @@ export default function UIOverlay({
             
             {mctsStats && !aiThinking && (
               <div className="text-xs text-blue-300 mt-2">
-                Last MCTS Run:<br/>
+                {difficulty <= 500 ? 'Last MCTS Run:' : 'Last Stockfish Run:'}<br/>
                 <span className="font-mono text-cyan-200">{mctsStats.rollouts.toLocaleString()}</span> nodes evaluated<br/>
                 <span className="font-mono text-cyan-200">{(mctsStats.time / 1000).toFixed(2)}s</span> quantum time
               </div>
